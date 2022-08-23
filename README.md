@@ -5,6 +5,7 @@ Lien Trello : https://trello.com/b/ct21FHPv/suivi-de-projet-picom
 Lien Balsamiq : https://balsamiq.cloud/s2qax9v/p5hawsj/r5FD8
 
 Description du projet :
+
 On considère un système publicitaire réparti sur tous les arrêts d’un réseau de transport en
 commun.
 Ce système sera nommé « Picom » pour Pi communication car il repose sur l’utilisation de
