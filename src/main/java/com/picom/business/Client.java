@@ -12,11 +12,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class Client extends Utilisateur{
 	
 	private String numeroDeTelephone;
