@@ -33,6 +33,7 @@ administrateurs.
 L’objectif de ce projet n’est pas d’écrire l’application IoT destinée aux Raspberries.
 
 Besoins fonctionnels :
+
 Pour les clients, il est nécessaire de pouvoir :
  s’inscrire en précisant son nom, son prénom, un email, un mot de passe contenant au
 minimum 8 caractères et son numéro de téléphone (l’inscription est gratuite) (feature 1)
