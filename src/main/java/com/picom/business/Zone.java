@@ -30,9 +30,10 @@ public class Zone {
 	
 	@OneToMany
 	(mappedBy="zone")
-	private List<Arret>lstArrets;
+	private List<Arret>arrets;
 	
 	@ManyToMany
-	private List<Annonce>lstAnnonces;
+	(mappedBy="zones")
+	private List<Annonce>annonces;
 	
 }

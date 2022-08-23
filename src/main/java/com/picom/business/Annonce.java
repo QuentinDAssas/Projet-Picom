@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,10 +37,16 @@ public class Annonce {
 	private String cryptogramme; 
 	private double montantRegleEnEuros; 
 	
-	@ManyToMany
-	private List<Zone>lstZones; 
+	@ManyToOne
+	private Client client; 
 	
 	@ManyToMany
-	private List<TrancheHoraire>lstTrancheHoraire; 
+	private List<Zone>zones; 
+	
+	@ManyToMany
+	private List<TrancheHoraire>tranchesHoraires; 
+	
+	
+	
 	
 }

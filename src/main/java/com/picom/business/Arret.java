@@ -26,5 +26,6 @@ public class Arret {
 	private double longitude; 
 	private double latitude; 
 	private Zone zone; 
+	
 
 }

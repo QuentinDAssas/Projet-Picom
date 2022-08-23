@@ -1,14 +1,11 @@
 package com.picom.business;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,15 +26,8 @@ public abstract class Diffusion {
 	private long id; 
 	private LocalDateTime dateHeureDiffusion; 
 	private Arret arret; 
-	private Annonce annonce; 
-	private Client client; 
+	private Annonce annonce;
+
 	
-	@OneToMany
-	(mappedBy="diffusion")
-	private List<Zone>lstZones; 
-	
-	@OneToMany
-	(mappedBy="diffusion")
-	private List<TrancheHoraire>lstTrancheHoraire; 
 	
 }
