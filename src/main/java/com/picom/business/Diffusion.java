@@ -20,7 +20,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public abstract class Diffusion {
+public class Diffusion {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

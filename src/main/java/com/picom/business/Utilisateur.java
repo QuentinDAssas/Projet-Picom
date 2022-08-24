@@ -18,9 +18,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-
 public abstract class Utilisateur {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
