@@ -1,13 +1,15 @@
 package com.picom.service.impl;
 
 import java.util.List;
-import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
+
 import com.picom.business.Annonce;
 import com.picom.business.Arret;
 import com.picom.business.Zone;
 import com.picom.dao.ZoneDao;
 import com.picom.service.ZoneService;
+
 import lombok.AllArgsConstructor;
 
 @Service
@@ -15,11 +17,6 @@ import lombok.AllArgsConstructor;
 public class ZoneServiceImpl implements ZoneService{
 
 	private ZoneDao zoneDao;
-
-	@Override
-	public Zone enregistrerZone(@Valid Zone zone) {
-		return zoneDao.save(zone);
-	}
 
 	@Override
 	public boolean supprimerZone(long id) {

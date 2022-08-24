@@ -10,9 +10,5 @@ public class AdministrateurServiceImpl implements AdministrateurService {
 	
 	private AdministrateurDao administrateurDao;
 	
-	@Override
-	public Administrateur enregistrerAdministrateur(@Valid Administrateur administrateur) {
-		return administrateurDao.save(administrateur);
-	}
 
 }	

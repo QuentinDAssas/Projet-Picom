@@ -15,11 +15,6 @@ import lombok.AllArgsConstructor;
 public class ClientServiceImpl implements ClientService{
 	
 	private ClientDao clientDao;
-	
-	@Override
-	public Client enregistrerClient(@Valid Client client) {
-		return clientDao.save(client);
-	}
 
 
 }
