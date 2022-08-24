@@ -11,7 +11,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper = true)
 public class Administrateur extends Utilisateur {
 	
 }

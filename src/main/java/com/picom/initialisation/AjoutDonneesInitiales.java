@@ -14,10 +14,10 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AjoutDonneesInitiales implements CommandLineRunner {
 
-	private final ClientDao clientDao;
 	private final AdministrateurDao administrateurDao;
+	private final ClientDao clientDao;
 	
-
+	
 	@Override
 	public void run(String... args) throws Exception {
 		Client clientTest = new Client();
