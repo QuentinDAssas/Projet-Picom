@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api")
 @AllArgsConstructor
 @Validated
-public class AnnonceController {
+public class AnnonceRestController {
 	
 	private final AnnonceService annonceService; 
 	

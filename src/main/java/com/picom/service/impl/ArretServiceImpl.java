@@ -19,10 +19,6 @@ public class ArretServiceImpl implements ArretService{
 	
 	private ArretDao arretDao;
 
-	@Override
-	public Arret enregistrerArret(@Valid Arret arret) {
-		return arretDao.save(arret);
-	}
 
 	@Override
 	public boolean supprimerArret(long id) {

@@ -25,7 +25,7 @@ import lombok.ToString;
 public class Annonce {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id; 
 	private LocalDateTime dateHeureCreation; 
 	private LocalDateTime dateHeureDebut; 

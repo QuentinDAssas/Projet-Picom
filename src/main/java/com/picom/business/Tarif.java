@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,16 +31,10 @@ public class Tarif {
 	@ManyToOne
 	Administrateur administrateur;
 	
-	@OneToOne
+	@ManyToOne
 	private Zone zone;
 	
-	@OneToOne
+	@ManyToOne
 	private TrancheHoraire trancheHoraire;
-	
-	public Tarif(double prixEnEuros, Zone zone, TrancheHoraire trancheHoraire) {
-		this.prixEnEuros=prixEnEuros;
-		this.zone=zone;
-		this.trancheHoraire=trancheHoraire;
-	}
-	
+		
 }

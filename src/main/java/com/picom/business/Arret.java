@@ -21,13 +21,13 @@ import lombok.ToString;
 public class Arret {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id; 
 	private String nom; 
 	private double longitude; 
 	private double latitude; 
-	@ManyToOne
-	private Zone zone; 
 	
-
+	@ManyToOne
+	private Zone zone;
+	
 }

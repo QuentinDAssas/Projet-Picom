@@ -1,5 +1,7 @@
 package com.picom.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.picom.business.Tarif;
@@ -17,8 +19,6 @@ import lombok.AllArgsConstructor;
 public class TarifServiceImpl implements TarifService{
 	
 	TarifDao tarifDao;
-	TrancheHoraireService trancheHoraireService;
-	ZoneService zoneService;
 	
 	@Override
 	public Tarif enregistrerUnTarif(Tarif tarif) {
@@ -26,10 +26,8 @@ public class TarifServiceImpl implements TarifService{
 	}
 
 	@Override
-	public Tarif recupererTarif(Long idZone, Long idTrancheHoraire) {
-		TrancheHoraire trancheHoraire = trancheHoraireService.recupererTrancheHoraire(idTrancheHoraire);
-		Zone zone = zoneService.recupererZone(idZone);
-		return null;
+	public List<Tarif> TousLesTarifs(Tarif tarif) {
+		return tarifDao.findAll();
 	}
 
 }

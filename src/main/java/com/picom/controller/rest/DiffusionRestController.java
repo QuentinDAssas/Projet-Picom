@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api")
 @AllArgsConstructor
 @Validated
-public class DiffusionController {
+public class DiffusionRestController {
 	
 	private final DiffusionService diffusionService; 
 	
