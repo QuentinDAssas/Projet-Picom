@@ -2,7 +2,7 @@ package com.picom.business;
 
 import javax.persistence.Entity;
 
-import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,9 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-public abstract class Administrateur extends Utilisateur{
-
-	
+@EqualsAndHashCode(callSuper = true)
+public class Administrateur extends Utilisateur {
 	
 }

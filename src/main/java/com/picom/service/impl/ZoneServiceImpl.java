@@ -2,6 +2,7 @@ package com.picom.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.picom.business.Zone;
 import com.picom.dao.ZoneDao;
 import com.picom.service.ZoneService;
 
@@ -12,4 +13,5 @@ import lombok.AllArgsConstructor;
 public class ZoneServiceImpl implements ZoneService{
 
 	private ZoneDao zoneDao; 
+
 }

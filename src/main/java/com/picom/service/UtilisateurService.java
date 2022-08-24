@@ -6,6 +6,6 @@ import com.picom.business.Utilisateur;
 
 public interface UtilisateurService {
 	
-	Utilisateur enregistrerUtilisateur(@Valid Utilisateur utilisateur);
+	Utilisateur recupererUtilisateur(String email, String motDePasse);
 
 }

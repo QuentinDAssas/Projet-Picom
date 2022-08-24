@@ -1,5 +1,8 @@
 package com.picom.service;
 
-public interface TrancheHoraireService {
+import com.picom.business.TrancheHoraire;
 
+public interface TrancheHoraireService {
+	
+	TrancheHoraire recupererTrancheHoraire(long id);
 }
