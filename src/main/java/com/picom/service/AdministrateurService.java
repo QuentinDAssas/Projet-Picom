@@ -7,5 +7,4 @@ import com.picom.business.Administrateur;
 public interface AdministrateurService {
 	
 	Administrateur enregistrerAdministrateur(@Valid Administrateur administrateur);
-
 }

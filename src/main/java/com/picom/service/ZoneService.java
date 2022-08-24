@@ -10,7 +10,7 @@ import com.picom.business.Zone;
 
 public interface ZoneService {
 
-	Zone enregistrerZone(@Valid Zone zone); ;
+	Zone enregistrerZone(@Valid Zone zone);
 	
 	boolean supprimerZone(long id); 
 	
@@ -19,5 +19,5 @@ public interface ZoneService {
 	Zone recupererZone(long id); 
 	
 	List<Zone>recupererListeZones();
-	
+
 }
