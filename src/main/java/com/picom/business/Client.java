@@ -24,4 +24,11 @@ public class Client extends Utilisateur{
 
 	@OneToMany(mappedBy="client")
 	private List<Annonce> annonces;
+
+	public Client(String numeroDeTelephone) {
+		super();
+		this.numeroDeTelephone = numeroDeTelephone;
+	}
+	
+	
 }
