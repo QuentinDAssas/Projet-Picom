@@ -12,7 +12,6 @@ import lombok.ToString;
 @Setter
 @ToString
 @AllArgsConstructor
-
 public  abstract class Administrateur extends Utilisateur{
 
 	

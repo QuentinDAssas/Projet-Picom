@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,9 @@ public abstract class Diffusion {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id; 
 	private LocalDateTime dateHeureDiffusion; 
+	@ManyToOne
 	private Arret arret; 
+	@ManyToOne
 	private Annonce annonce;
 
 	
