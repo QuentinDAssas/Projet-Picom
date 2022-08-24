@@ -1,8 +1,5 @@
 package com.picom.business;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +18,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Utilisateur {
+public abstract class Utilisateur {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

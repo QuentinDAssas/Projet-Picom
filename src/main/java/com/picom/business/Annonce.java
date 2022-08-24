@@ -44,8 +44,7 @@ public class Annonce {
 	private List<Zone>zones; 
 	
 	@ManyToMany
-	private List<TrancheHoraire>tranchesHoraires; 
-	
+	private List<TrancheHoraire>tranchesHoraires;
 	
 	
 	

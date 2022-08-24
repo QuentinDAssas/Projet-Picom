@@ -3,6 +3,8 @@ package com.picom.service.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.picom.business.Annonce;
@@ -20,40 +22,37 @@ public class AnnonceServiceImpl implements AnnonceService{
 	private AnnonceDao annonceDao; 
 	
 	@Override
-	public Annonce ajouterAnnonce(Annonce annonce) {
-		// TODO Auto-generated method stub
-		return null;
+	public Annonce enregistrerAnnonce(@Valid Annonce annonce) {
+		return annonceDao.save(annonce);
 	}
 
 	@Override
 	public boolean supprimerAnnonce(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		annonceDao.deleteById(id);
+		return true; 
 	}
 
 	@Override
 	public Annonce modifierAnnonce(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, String contenu,
-			List<Zone> zones, List<TrancheHoraire> tranchesHoraires) {
-		// TODO Auto-generated method stub
-		return null;
+			List<Zone>zones, List<TrancheHoraire> tranchesHoraires) {
+		Annonce annonce = new Annonce(); 
+		annonce.setDateHeureDebut(dateHeureDebut); 
+		annonce.setDateHeureFin(dateHeureFin);
+		annonce.setContenu(contenu); 
+		annonce.setZones(zones);
+		annonce.setTranchesHoraires(tranchesHoraires);
+		return annonceDao.save(annonce);
 	}
 
 	@Override
 	public Annonce recupererAnnonce(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return annonceDao.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<Annonce> recupererListeAnnonce() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Annonce> recupererListeAnnonces() {
+		return annonceDao.findAll();
 	}
 
-	@Override
-	public Annonce sauvegarderAnnonce(Annonce annonce) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
