@@ -30,11 +30,20 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final ZoneDao zoneDao;
 	private final ArretDao arretDao;
 	private final TrancheHoraireDao trancheHoraireDao;
-	private final TarifDao tarifDao;
-	
+	//private final TarifDao tarifDao;
+
 	@Override
 	public void run(String... args) throws Exception {
 
+		addClient();
+		addAdministrateur();
+		addZone();
+		addZones();
+		addTrancheHoraire();
+
+	}
+
+	public void addClient() {
 		Client clientTest = new Client();
 		clientTest.setNom("Orsys");
 		clientTest.setPrenom("jury");
@@ -44,6 +53,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		System.out.println(clientTest);
 		clientDao.save(clientTest);
 
+	}
+
+	public void addAdministrateur() {
 		Administrateur adminTest = new Administrateur();
 		adminTest.setNom("l'Eponge");
 		adminTest.setPrenom("Bob");
@@ -51,42 +63,55 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		adminTest.setEmail("admin1@orsys.fr");
 		System.out.println(adminTest);
 		administrateurDao.save(adminTest);
+	}
 
+	public void addZone() {
 		for (int i = 1; i < 6; i++) {
 			Zone zone = new Zone();
 			zone.setNom("zone" + i);
 			System.out.println(zone);
 			zoneDao.save(zone);
 		}
+	}
+	
+	public void addZones() {
+		List<Zone> zones = zoneDao.findAll();
+		for (Zone zone : zones)
 
+		{
+			for (int i = 1; i < 5; i++) {
+				Arret arret = new Arret();
+				Random rand = new Random();
+
+				double latitude = rand.nextDouble(1, 10);
+				double longitude = rand.nextDouble(1, 10);
+
+				arret.setNom("arret" + i);
+				arret.setLatitude(latitude);
+				arret.setLongitude(longitude);
+				// arret.setZone(zone.getId());
+				System.out.println(arret);
+				arretDao.save(arret);
+			}
+
+		}
+	}
+
+
+	public void addTrancheHoraire() {
 		for (int i = 6; i < 21; i++) {
 			TrancheHoraire trancheHoraire = new TrancheHoraire();
 			trancheHoraire.setDebut(i);
 			System.out.println(trancheHoraire);
 			trancheHoraireDao.save(trancheHoraire);
 		}
-
-		List<Zone> zones = zoneDao.findAll();
-		for (Zone zone : zones) {
-			for (int i = 1; i < 5; i++) {
-				Arret arret = new Arret();
-				Random rand = new Random();
-
-				double latitude = rand.nextDouble(1,10);
-				double longitude = rand.nextDouble(1,10);
-
-				arret.setNom("arret" + i);
-				arret.setLatitude(latitude);
-				arret.setLongitude(longitude);
-//				arret.setZone(zone.getId());
-				System.out.println(arret);
-				arretDao.save(arret);
-			}
-
-		}		
-		Tarif testTarif = new Tarif();
-		testTarif.setPrixEnEuros(12);
-		testTarif.setAdministrateur(adminTest);
-		tarifDao.save(testTarif);
 	}
+
+	
+//	Tarif testTarif = new Tarif();
+//	testTarif.setPrixEnEuros;
+//	testTarif.setAdministrateur(adminTest);
+//	tarifDao.save(testTarif);
+	
+	
 }

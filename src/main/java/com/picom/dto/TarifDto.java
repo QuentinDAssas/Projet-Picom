@@ -1,27 +1,24 @@
-package com.picom.business;
+package com.picom.dto;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.picom.business.Administrateur;
+import com.picom.business.TrancheHoraire;
+import com.picom.business.Zone;
+
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
-
-
-@Entity
 @NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-public class Tarif {
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class TarifDto {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,9 +30,10 @@ public class Tarif {
 	Administrateur administrateur;
 	
 	@ManyToOne
+	@NotNull(message="Merci de préciser la zone")
 	private Zone zone;
 	
 	@ManyToOne
+	@NotNull(message="Merci de préciser la tranche horaire")
 	private TrancheHoraire trancheHoraire;
-		
 }
