@@ -29,22 +29,22 @@ public class AnnonceRestController {
 	
 	
 	@GetMapping("annonces")
-	public List<Annonce> annoncesGet() {
+	public List<Annonce> annoncesGet(){
 		return annonceService.recupererListeAnnonces();
 	}
 	
 	@PostMapping("annonces")
-	public Annonce annoncePost(@Valid Annonce annonce) {
+	public Annonce annoncePost(@Valid Annonce annonce){
 		return annonceService.enregistrerAnnonce(annonce);
 	}
 	
 	@DeleteMapping("annonces/{id}")
-	public boolean annonceDelete(@PathVariable Long id) {
+	public boolean annonceDelete(@PathVariable Long id){
 		return annonceService.supprimerAnnonce(id);
 	}
 	
-	@PutMapping("{id}")
-	public Annonce annoncePut(@RequestBody Annonce annonce) {
+	@PutMapping("annonces/{id}")
+	public Annonce annoncePut(@RequestBody Annonce annonce){
 		// annonce = annonceService.recupererAnnonce(id);
 		
 		return annonceService.modifierAnnonce(annonce.getDateHeureDebut(),annonce.getDateHeureFin(),annonce.getContenu(),annonce.getZones(),annonce.getTranchesHoraires());

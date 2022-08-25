@@ -20,15 +20,10 @@ import lombok.ToString;
 
 public class Client extends Utilisateur{
 	
+	
 	private String numeroDeTelephone;
 
 	@OneToMany(mappedBy="client")
 	private List<Annonce> annonces;
-
-	public Client(String numeroDeTelephone) {
-		super();
-		this.numeroDeTelephone = numeroDeTelephone;
-	}
-	
 	
 }

@@ -31,4 +31,5 @@ public class TrancheHoraire {
 	@ManyToMany(mappedBy="tranchesHoraires")
 	private List<Annonce> annonces;
 
+	
 }
