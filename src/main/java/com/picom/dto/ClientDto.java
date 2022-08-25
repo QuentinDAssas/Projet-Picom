@@ -27,9 +27,10 @@ public class ClientDto {
 	String email;
 	
 //	@JsonProperty(access = Access.WRITE_ONLY)
-	@Size(min=3, message="{client.mot-de-passe.invalide}")
+	@Size(min=8, message="{client.mot-de-passe.invalide}")
 	String motDePasse;
 	
+	@Size(min=10, max= 10, message="{client.numero-de-telephone.invalide}")
 	@NotBlank(message="{client.numeroDeTelephone.manquant}")
 	String numeroDeTelephone;
 

@@ -39,7 +39,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addAdministrateurs();
 		addZones();
 		addArrets();
-		addTrancheHoraires();
+		addTranchesHoraires();
+
 
 	}
 
@@ -68,7 +69,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	public void addZones() {
 		for (int i = 1; i < 6; i++) {
 			Zone zone = new Zone();
-			zone.setNom("zone" + i);
+			zone.setNom("zone " + i);
 			System.out.println(zone);
 			zoneDao.save(zone);
 		}
@@ -98,7 +99,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 	}
 
-	public void addTrancheHoraires() {
+	public void addTranchesHoraires() {
 		for (int i = 6; i < 21; i++) {
 			TrancheHoraire trancheHoraire = new TrancheHoraire();
 			trancheHoraire.setDebut(i);

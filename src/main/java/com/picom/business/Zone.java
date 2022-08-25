@@ -39,4 +39,7 @@ public class Zone {
 	(mappedBy="zones")
 	private List<Annonce>annonces;
 	
+	public Long setIdZone(Zone zone) {
+		return zone.getId();
+	}
 }
