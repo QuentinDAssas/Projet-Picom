@@ -13,6 +13,5 @@ public interface ArretService {
 	
 	Arret recupererArret(long id); 
 	
-	List<Arret>recupererListeArrets(); 
-	
+	List<Arret>recupererListeArrets(); 	
 }

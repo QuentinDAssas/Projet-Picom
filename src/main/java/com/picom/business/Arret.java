@@ -27,7 +27,11 @@ public class Arret {
 	private double longitude; 
 	private double latitude; 
 	
+	@ToString.Exclude
 	@ManyToOne
 	private Zone zone;
-	
+
+	public Long setZoneId(Zone zone) { 
+        return zone.getId(); 
+    }
 }
