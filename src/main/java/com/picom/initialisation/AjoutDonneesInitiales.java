@@ -88,5 +88,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		testTarif.setPrixEnEuros(12);
 		testTarif.setAdministrateur(adminTest);
 		tarifDao.save(testTarif);
+
+		
 	}
 }

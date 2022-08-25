@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,9 +33,11 @@ public class Tarif {
 	Administrateur administrateur;
 	
 	@ManyToOne
+	@NotNull(message="Merci de préciser la Zone")
 	private Zone zone;
 	
 	@ManyToOne
+	@NotNull(message="Merci de préciser la Zone")
 	private TrancheHoraire trancheHoraire;
 		
 }
