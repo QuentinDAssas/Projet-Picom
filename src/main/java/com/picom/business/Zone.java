@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,7 @@ public class Zone {
 	private Long id; 
 	private String nom; 
 	
+	@ToString.Exclude
 	@OneToMany
 	(mappedBy="zone")
 	private List<Arret>arrets;
@@ -36,4 +39,7 @@ public class Zone {
 	(mappedBy="zones")
 	private List<Annonce>annonces;
 	
+	public Long setIdZone(Zone zone) {
+		return zone.getId();
+	}
 }

@@ -35,15 +35,15 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		addClient();
-		addAdministrateur();
-		addZone();
+		addClients();
+		addAdministrateurs();
 		addZones();
-		addTrancheHoraire();
+		addArrets();
+		addTranchesHoraires();
 
 	}
 
-	public void addClient() {
+	public void addClients() {
 		Client clientTest = new Client();
 		clientTest.setNom("Orsys");
 		clientTest.setPrenom("jury");
@@ -55,7 +55,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 	}
 
-	public void addAdministrateur() {
+	public void addAdministrateurs() {
 		Administrateur adminTest = new Administrateur();
 		adminTest.setNom("l'Eponge");
 		adminTest.setPrenom("Bob");
@@ -65,16 +65,16 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		administrateurDao.save(adminTest);
 	}
 
-	public void addZone() {
+	public void addZones() {
 		for (int i = 1; i < 6; i++) {
 			Zone zone = new Zone();
-			zone.setNom("zone" + i);
+			zone.setNom("zone " + i);
 			System.out.println(zone);
 			zoneDao.save(zone);
 		}
 	}
 	
-	public void addZones() {
+	public void addArrets() {
 		List<Zone> zones = zoneDao.findAll();
 		for (Zone zone : zones)
 
@@ -89,7 +89,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				arret.setNom("arret" + i);
 				arret.setLatitude(latitude);
 				arret.setLongitude(longitude);
-				// arret.setZone(zone.getId());
+				arret.setZone(zone);
+				arret.setZoneId(zone);
 				System.out.println(arret);
 				arretDao.save(arret);
 			}
@@ -97,7 +98,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 	}
 
-	public void addTrancheHoraire() {
+	public void addTranchesHoraires() {
 		for (int i = 6; i < 21; i++) {
 			TrancheHoraire trancheHoraire = new TrancheHoraire();
 			trancheHoraire.setDebut(i);
