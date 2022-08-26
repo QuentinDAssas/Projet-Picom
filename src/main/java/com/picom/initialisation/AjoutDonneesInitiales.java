@@ -90,7 +90,6 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				arret.setLatitude(latitude);
 				arret.setLongitude(longitude);
 				arret.setZone(zone);
-				arret.setZoneId(zone);
 				System.out.println(arret);
 				arretDao.save(arret);
 			}

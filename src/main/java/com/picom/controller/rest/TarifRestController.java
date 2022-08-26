@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RestController
-@RequestMapping("api/)")
+@RequestMapping("api/")
 public class TarifRestController {
 	
 	private final TarifService tarifService;
