@@ -1,5 +1,7 @@
 package com.picom.initialisation;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -7,12 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.picom.business.Administrateur;
+import com.picom.business.Annonce;
 import com.picom.business.Arret;
 import com.picom.business.Client;
 import com.picom.business.Tarif;
 import com.picom.business.TrancheHoraire;
 import com.picom.business.Zone;
 import com.picom.dao.AdministrateurDao;
+import com.picom.dao.AnnonceDao;
 import com.picom.dao.ArretDao;
 import com.picom.dao.ClientDao;
 import com.picom.dao.TarifDao;
@@ -31,6 +35,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final ArretDao arretDao;
 	private final TrancheHoraireDao trancheHoraireDao;
 	private final TarifDao tarifDao;
+	private final AnnonceDao annonceDao;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -41,7 +46,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addArrets();
 		addTranchesHoraires();
 		addTarifByAdmin();
-
+		addAnnonce();
+		
 
 	}
 
@@ -119,6 +125,46 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		testTarif.setTrancheHoraire(horaire.get(2));
 		testTarif.setZone(zones.get(1));
 		tarifDao.save(testTarif);
+	}
+	
+	public void addAnnonce() {
+		Annonce annonce = new Annonce(); 
+		
+		
+		Client clientTest = new Client();
+		clientTest.setNom("Orsys");
+		clientTest.setPrenom("jury");
+		clientTest.setMotDePasse("12345678");
+		clientTest.setEmail("client1@orsys.fr");
+		clientTest.setNumeroDeTelephone("02 40 35 06 70");
+		
+		clientDao.save(clientTest);
+		
+		List<Zone> zones = zoneDao.findAll();
+		System.out.println(zones);
+		
+		List<TrancheHoraire>tranchesHoraires = trancheHoraireDao.findAll();
+		
+		annonce.setDateHeureCreation(LocalDateTime.now());
+		annonce.setDateHeureDebut(LocalDateTime.now());
+		annonce.setDateHeureFin(LocalDateTime.now());
+		annonce.setContenu("hello world");
+		annonce.setNumeroCarte("12345678");
+		annonce.setMoisExpiration((byte)11);
+		annonce.setCryptogramme("abc");
+		annonce.setMontantRegleEnEuros(23.00);
+		annonce.setClient(clientTest);
+		annonceDao.save(annonce);
+		annonce.setZones(zones);
+		annonce.setTranchesHoraires(tranchesHoraires);
+		
+		//TODO Trouver une solution pour ne pas faire deux fois appelle à la méthode save()
+		annonceDao.save(annonce);
+		
+		
+		
+		
+		
 	}
 	
 	

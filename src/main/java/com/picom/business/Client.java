@@ -2,8 +2,12 @@ package com.picom.business;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +27,8 @@ public class Client extends Utilisateur{
 	
 	private String numeroDeTelephone;
 
+	
+	@JsonIgnore
 	@OneToMany(mappedBy="client")
 	private List<Annonce> annonces;
 	

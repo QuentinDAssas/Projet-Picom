@@ -17,24 +17,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.picom.business.Annonce;
+import com.picom.business.TrancheHoraire;
 import com.picom.service.AnnonceService;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RestController
-@RequestMapping("api/)")
-@Validated
+@AllArgsConstructor
+@CrossOrigin("http://localhost:4200")
+@RequestMapping("api/")
 public class AnnonceRestController {
 	
 	private final AnnonceService annonceService; 
 	
 	@RolesAllowed("CLIENT")
 	@GetMapping("annonces")
-	public List<Annonce> annoncesGet(){
+	public List<Annonce> annoncesGetAll(){
 		return annonceService.recupererListeAnnonces();
 	}
+	
+	@GetMapping("annonces/{id}")
+	public Annonce annoncesGet(@PathVariable Long id){
+		return annonceService.recupererAnnonce(id);
+	}
+	
+	@GetMapping("annonces/{id}/tranchesHoraires")
+    public List<TrancheHoraire> tranchesHorairesAnnoncesGet(@PathVariable Long id){
+        return annonceService.recupererAnnonce(id).getTranchesHoraires();
+    }
+	
 	@RolesAllowed("CLIENT")
 	@PostMapping("annonces")
 	public Annonce annoncePost(@Valid Annonce annonce){

@@ -30,14 +30,24 @@ public class Zone {
 	private Long id; 
 	private String nom; 
 	
+	@JsonIgnore
 	@ToString.Exclude
 	@OneToMany
 	(mappedBy="zone")
 	private List<Arret>arrets;
 	
+	@JsonIgnore
+	@ToString.Exclude
 	@ManyToMany
 	(mappedBy="zones")
 	private List<Annonce>annonces;
+
+	public Zone(String nom, List<Arret> arrets) {
+		super();
+		this.nom = nom;
+		this.arrets = arrets;
+	}
+	
 	
 	
 }

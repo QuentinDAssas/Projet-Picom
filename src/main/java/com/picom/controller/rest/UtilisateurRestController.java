@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,8 @@ import com.picom.service.UtilisateurService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("api/")
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 @Validated
 public class UtilisateurRestController {
@@ -24,7 +26,7 @@ public class UtilisateurRestController {
 	private final UtilisateurService utilisateurService;
 	
 	
-    @GetMapping("utilisateurs/{email}/{motDePasse}")
+    @GetMapping("utilisateurs/login")
     public ResponseEntity<Utilisateur> utilisateurGetByEmailAndMotDePasse(@PathVariable String email, @PathVariable String motDePasse) throws URISyntaxException {
         Utilisateur u = utilisateurService.recupererUtilisateur(email, motDePasse);
         
