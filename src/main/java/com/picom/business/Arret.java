@@ -31,9 +31,4 @@ public class Arret {
 	@ManyToOne
 	private Zone zone;
 
-	
-	public Long setZoneId(Zone zone) { 
-		return zone.getId(); 
-	}
-
 }

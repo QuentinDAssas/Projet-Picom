@@ -1,7 +1,15 @@
 package com.picom.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.management.relation.Role;
 import javax.validation.Valid;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.picom.business.Client;
@@ -16,7 +24,7 @@ import lombok.AllArgsConstructor;
 public class ClientServiceImpl implements ClientService{
 	
 	private ClientDao clientDao;
-
+	private final PasswordEncoder passwordEncoder;
 
 
 	@Override
@@ -31,7 +39,7 @@ public class ClientServiceImpl implements ClientService{
 		client.setNom(clientDto.getNom());
 		client.setPrenom(clientDto.getPrenom());
 		client.setEmail(clientDto.getEmail());
-        client.setMotDePasse(clientDto.getMotDePasse());
+        client.setMotDePasse(passwordEncoder.encode(clientDto.getMotDePasse()));
         client.setNumeroDeTelephone(clientDto.getNumeroDeTelephone());
         clientDao.save(client);
         return client;
@@ -44,6 +52,14 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 
+    private List<GrantedAuthority> getGrantedAuthorities(Client client) {
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//        Set<Role> CLIENT = client.getRoles();
+//        for (Role role : roles) {
+//        	authorities.add(new SimpleGrantedAuthority(role.getNom()));	
+//		}
+        return authorities;
+    }
 
 
 }
