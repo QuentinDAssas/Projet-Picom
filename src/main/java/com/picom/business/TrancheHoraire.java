@@ -28,6 +28,7 @@ public class TrancheHoraire {
 	
 	private int debut;
 	
+	@ToString.Exclude
 	@ManyToMany(mappedBy="tranchesHoraires")
 	private List<Annonce> annonces;
 

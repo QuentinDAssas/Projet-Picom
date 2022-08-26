@@ -35,11 +35,9 @@ public class Zone {
 	(mappedBy="zone")
 	private List<Arret>arrets;
 	
+	@JsonIgnore
+	@ToString.Exclude
 	@ManyToMany
 	(mappedBy="zones")
 	private List<Annonce>annonces;
-	
-	public Long setIdZone(Zone zone) {
-		return zone.getId();
-	}
 }

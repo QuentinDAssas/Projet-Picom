@@ -100,7 +100,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	}
 
 	public void addTranchesHoraires() {
-		for (int i = 6; i < 21; i++) {
+		for (int i = 6; i < 20; i++) {
 			TrancheHoraire trancheHoraire = new TrancheHoraire();
 			trancheHoraire.setDebut(i);
 			System.out.println(trancheHoraire);

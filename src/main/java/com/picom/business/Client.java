@@ -1,3 +1,4 @@
+
 package com.picom.business;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class Client extends Utilisateur{
 	
 	
 	private String numeroDeTelephone;
+
 
 	@OneToMany(mappedBy="client")
 	private List<Annonce> annonces;

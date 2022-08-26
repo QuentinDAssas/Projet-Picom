@@ -24,14 +24,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RestController
-@RequestMapping("api/)")
+@RequestMapping("api/")
 public class TarifRestController {
 	
 	private final TarifService tarifService;
 	
 	@RolesAllowed("ADMIN")
 	@GetMapping("ListTarif")
-	public List<Tarif> tarifsGet(){
+	public List<Tarif> getTarifs(){
 		return tarifService.recupererTousLesTarifs();
 	}
 	@RolesAllowed("ADMIN")	
