@@ -2,6 +2,8 @@ package com.picom.service.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.picom.business.Tarif;
@@ -27,7 +29,7 @@ public class TarifServiceImpl implements TarifService{
 	}
 	
 	@Override
-	public Tarif enregistrerUnTarif(TarifDto tarifDto) {
+	public Tarif enregistrerUnTarif(@Valid TarifDto tarifDto) {
 		Tarif tarif = new Tarif(); 
 		tarif.setPrixEnEuros(tarifDto.getPrixEnEuros());
 		tarif.setAdministrateur(tarifDto.getAdministrateur());

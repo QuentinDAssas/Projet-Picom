@@ -30,7 +30,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final ZoneDao zoneDao;
 	private final ArretDao arretDao;
 	private final TrancheHoraireDao trancheHoraireDao;
-	//private final TarifDao tarifDao;
+	private final TarifDao tarifDao;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -40,6 +40,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addZones();
 		addArrets();
 		addTranchesHoraires();
+		addTarifByAdmin();
+
 
 	}
 
@@ -85,7 +87,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 				double latitude = rand.nextDouble(1, 10);
 				double longitude = rand.nextDouble(1, 10);
-
+							
 				arret.setNom("arret" + i);
 				arret.setLatitude(latitude);
 				arret.setLongitude(longitude);
@@ -106,11 +108,19 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 	}
 	
-
-//	Tarif testTarif = new Tarif();
-//	testTarif.setPrixEnEuros;
-//	testTarif.setAdministrateur(adminTest);
-//	tarifDao.save(testTarif);
+	public void addTarifByAdmin() {
+		List<Zone> zones = zoneDao.findAll();
+		List<TrancheHoraire> horaire = trancheHoraireDao.findAll();
+		Administrateur adminTest = administrateurDao.getById((long) 2);
+		Tarif testTarif = new Tarif();
+		
+		testTarif.setPrixEnEuros(12);
+		testTarif.setAdministrateur(adminTest);
+		testTarif.setTrancheHoraire(horaire.get(2));
+		testTarif.setZone(zones.get(1));
+		tarifDao.save(testTarif);
+	}
+	
 	
 	
 }

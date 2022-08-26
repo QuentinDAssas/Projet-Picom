@@ -30,6 +30,6 @@ public class Arret {
 	@ToString.Exclude
 	@ManyToOne
 	private Zone zone;
-	
+
 
 }
