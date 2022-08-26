@@ -1,9 +1,9 @@
 package com.picom.configuration.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
  * https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter
  */
 @Configuration
+@EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfiguration {
 
@@ -42,7 +43,7 @@ public class SecurityConfiguration {
         .authorizeRequests()
         .antMatchers("/h2-console").permitAll()  
         .antMatchers("/swagger-ui/index.html#/").permitAll()
-        .antMatchers("/index").permitAll()
+        .antMatchers("/api/").permitAll()
         .antMatchers("/inscription").permitAll()
         .antMatchers("/client/**").hasRole("CLIENT")
         .antMatchers("/administrateur/**").hasRole("ADMIN")
@@ -52,5 +53,7 @@ public class SecurityConfiguration {
         
        return http.build();
     }
+	
+	
     
 }

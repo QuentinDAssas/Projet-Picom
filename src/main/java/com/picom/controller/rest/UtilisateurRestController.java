@@ -33,7 +33,7 @@ public class UtilisateurRestController {
 	private final TrancheHoraireService trancheHoraireService;
 	
 	
-    @GetMapping("utilisateurs/{email}/{motDePasse}")
+    @GetMapping("utilisateurs/login")
     public ResponseEntity<Utilisateur> utilisateurGetByEmailAndMotDePasse(@PathVariable String email, @PathVariable String motDePasse) throws URISyntaxException {
         Utilisateur u = utilisateurService.recupererUtilisateur(email, motDePasse);
         

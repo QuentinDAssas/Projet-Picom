@@ -34,4 +34,5 @@ public class Arret {
 	@ManyToOne
 	private Zone zone;
 
+
 }
