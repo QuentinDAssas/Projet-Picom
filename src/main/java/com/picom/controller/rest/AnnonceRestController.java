@@ -36,11 +36,13 @@ public class AnnonceRestController {
 		return annonceService.recupererListeAnnonces();
 	}
 	
+	@RolesAllowed("CLIENT")
 	@GetMapping("annonces/{id}")
 	public Annonce annoncesGet(@PathVariable Long id){
 		return annonceService.recupererAnnonce(id);
 	}
 	
+	@RolesAllowed("CLIENT")
 	@GetMapping("annonces/{id}/tranchesHoraires")
     public List<TrancheHoraire> tranchesHorairesAnnoncesGet(@PathVariable Long id){
         return annonceService.recupererAnnonce(id).getTranchesHoraires();
@@ -51,11 +53,13 @@ public class AnnonceRestController {
 	public Annonce annoncePost(@Valid Annonce annonce){
 		return annonceService.enregistrerAnnonce(annonce);
 	}
+	
 	@RolesAllowed("CLIENT")
 	@DeleteMapping("annonces/{id}")
 	public boolean annonceDelete(@PathVariable Long id){
 		return annonceService.supprimerAnnonce(id);
 	}
+	
 	@RolesAllowed("CLIENT")
 	@PutMapping("annonces/{id}")
 	public Annonce annoncePut(@RequestBody Annonce annonce){

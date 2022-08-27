@@ -31,6 +31,7 @@ public class DiffusionRestController {
 	public List<Diffusion> diffusionsGet(){
 		return diffusionService.recupererListeDiffusions();
 	}
+	
 	@RolesAllowed("CLIENT")
 	@PostMapping("diffusions")
 	public Diffusion diffusionPost(@Valid Diffusion diffusion) {

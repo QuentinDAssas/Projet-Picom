@@ -56,6 +56,7 @@ public class ClientRestController {
 		return ResponseEntity.created(new URI("/api/clients/" + email + "/" + motDePasse)).body(u);
 	}
 
+	@RolesAllowed("CLIENT")
 	@PostMapping(value = "clientsDto")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ClientDto ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) {

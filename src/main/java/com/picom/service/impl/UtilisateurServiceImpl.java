@@ -30,17 +30,18 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
 	public Utilisateur recupererUtilisateur(String email, String motDePasse) {
 		return utilisateurDao.findByEmailAndMotDePasse(email, motDePasse);
 	}
+	
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
-		if (username.trim().isEmpty()) {
+		if (email.trim().isEmpty()) {
 			throw new UsernameNotFoundException("username is empty");
 		}
 
-		Utilisateur utilisateur = utilisateurDao.findByEmail(username);
+		Utilisateur utilisateur = utilisateurDao.findByEmail(email);
 		if (utilisateur == null) {
-			throw new UsernameNotFoundException("user " + username + " not found");
+			throw new UsernameNotFoundException("email " + email + " not found");
 		}
 		List<GrantedAuthority> grantedAuthorities = getGrantedAuthorities(utilisateur);
 		User user = new User(utilisateur.getEmail(), utilisateur.getMotDePasse(), grantedAuthorities);
@@ -55,12 +56,15 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
 //        	authorities.add(new SimpleGrantedAuthority(role.getNom()));	
 //		}
         if (utilisateur instanceof Administrateur) {
-        	authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        	authorities.add(new SimpleGrantedAuthority("ADMIN"));
         }else {
-        	authorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
+        	authorities.add(new SimpleGrantedAuthority("CLIENT"));
         }
     	
         return authorities;
     }
+
+
+
 
 }

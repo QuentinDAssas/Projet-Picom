@@ -8,6 +8,6 @@ public interface UtilisateurDao extends JpaRepository<Utilisateur, Long>{
 	
 	Utilisateur findByEmailAndMotDePasse(String email, String motDePasse);
 	
-	Utilisateur findByEmail(String username);
+	Utilisateur findByEmail(String email);
 
 }

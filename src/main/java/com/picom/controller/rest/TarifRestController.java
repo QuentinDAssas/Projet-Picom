@@ -30,7 +30,7 @@ public class TarifRestController {
 	private final TarifService tarifService;
 	
 	@RolesAllowed("ADMIN")
-	@GetMapping("ListTarif")
+	@GetMapping("listeTarifs")
 	public List<Tarif> getTarifs(){
 		return tarifService.recupererTousLesTarifs();
 	}

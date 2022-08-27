@@ -17,10 +17,6 @@ public class PicomApplication implements WebMvcConfigurer {
 		SpringApplication.run(PicomApplication.class, args);
 	}
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {

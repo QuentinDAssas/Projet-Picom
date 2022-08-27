@@ -19,6 +19,7 @@ public class AdministrateurRestController {
 	
 	private final AdministrateurService administrateurService;
 	
+	
 	@GetMapping("administrateur/{id}")
 	public Administrateur administrateurGet(@PathVariable Long id) {
 		return administrateurService.recupererAdministrateur(id);
