@@ -17,9 +17,11 @@ import org.springframework.stereotype.Component;
 @Primary
 public class CustomAuthenticationManager implements AuthenticationManager {
 	
+	@Autowired
 	private UserDetailsService userDetailsService;
 	private PasswordEncoder passwordEncoder;
 
+	
 	public CustomAuthenticationManager(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
 		super();
 		this.userDetailsService = userDetailsService;

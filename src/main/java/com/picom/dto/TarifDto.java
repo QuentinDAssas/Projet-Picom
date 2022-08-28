@@ -3,12 +3,6 @@ package com.picom.dto;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-
-import com.picom.business.Administrateur;
-import com.picom.business.TrancheHoraire;
-import com.picom.business.Zone;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -26,16 +20,9 @@ public class TarifDto {
 	
 	private double prixEnEuros;
 	
-	@ManyToOne
-	Administrateur administrateur;
+	Long idAdministrateur;
+
+	Long idZone;
 	
-	@ManyToOne
-	@NotNull(message="Merci de préciser la zone")
-	private Zone zone;
-	
-	@ManyToOne
-	@NotNull(message="Merci de préciser la tranche horaire")
-	private TrancheHoraire trancheHoraire;
-	
-	
+	Long idTrancheHoraire;
 }

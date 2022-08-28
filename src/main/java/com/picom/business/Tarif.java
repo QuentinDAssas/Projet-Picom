@@ -1,11 +1,15 @@
 package com.picom.business;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,12 +36,11 @@ public class Tarif {
 	@ManyToOne
 	Administrateur administrateur;
 	
-	@ManyToOne
-	@NotNull(message="Merci de préciser la Zone")
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Zone zone;
 	
-	@ManyToOne
-	@NotNull(message="Merci de préciser la Zone")
+
+	@ManyToOne(fetch=FetchType.EAGER)
 	private TrancheHoraire trancheHoraire;
 
 	public Tarif(Long id, double prixEnEuros, @NotNull(message = "Merci de préciser la Zone") Zone zone,
