@@ -8,10 +8,15 @@ import com.picom.business.Tarif;
 import com.picom.dto.TarifDto;
 
 public interface TarifService {
+	
+	List<Tarif>recupererTousLesTarifs ();
+	
+	Tarif recupererTarif(Long id);
 
 	Tarif enregistrerUnTarif (Tarif tarif);
 	
 	Tarif enregistrerUnTarif(@Valid TarifDto tarifDto);
 	
-	List<Tarif>recupererTousLesTarifs ();
+	boolean supprimerTarif (Long id);
+
 }

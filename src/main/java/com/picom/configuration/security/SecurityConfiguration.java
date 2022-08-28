@@ -46,7 +46,7 @@ public class SecurityConfiguration {
         .antMatchers("/api/").permitAll()
         .antMatchers("/inscription").permitAll()
         .antMatchers("/client/**").hasRole("CLIENT")
-        .antMatchers("/administrateur/**").hasRole("ADMIN")
+        .antMatchers("/administration/**").hasRole("ADMIN")
         // Pour la console H2 (à ne pas utiliser en prod)
         .and()
         .headers().frameOptions().disable();

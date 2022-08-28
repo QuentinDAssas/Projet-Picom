@@ -1,5 +1,7 @@
 package com.picom.dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,14 +28,9 @@ public class TarifDto {
 	
 	private double prixEnEuros;
 	
-	@ManyToOne
-	Administrateur administrateur;
+	Long idAdministrateur;
+
+	Long idZone;
 	
-	@ManyToOne
-	@NotNull(message="Merci de préciser la zone")
-	private Zone zone;
-	
-	@ManyToOne
-	@NotNull(message="Merci de préciser la tranche horaire")
-	private TrancheHoraire trancheHoraire;
+	Long idTrancheHoraire;
 }
