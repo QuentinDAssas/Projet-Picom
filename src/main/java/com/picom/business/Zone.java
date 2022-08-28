@@ -47,4 +47,11 @@ public class Zone {
 		this.nom = nom;
 		this.arrets = arrets;
 	}
+
+	public Zone(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
 }

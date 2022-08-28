@@ -39,5 +39,15 @@ public class Tarif {
 	@ManyToOne
 	@NotNull(message="Merci de préciser la Zone")
 	private TrancheHoraire trancheHoraire;
-		
+
+	public Tarif(Long id, double prixEnEuros, @NotNull(message = "Merci de préciser la Zone") Zone zone,
+			@NotNull(message = "Merci de préciser la Zone") TrancheHoraire trancheHoraire) {
+		super();
+		this.id = id;
+		this.prixEnEuros = prixEnEuros;
+		this.zone = zone;
+		this.trancheHoraire = trancheHoraire;
+	}
+	
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,21 +35,22 @@ public class TarifRestController {
 	public List<Tarif> getTarifs(){
 		return tarifService.recupererTousLesTarifs();
 	}
-	@RolesAllowed("ADMIN")	
-	@PostMapping(value = "tarifsDto")
+	
+	//@RolesAllowed("ADMIN")	
+	@PostMapping(value = "addTarif")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TarifDto tarifPost(@Valid @RequestBody TarifDto tarifDto, BindingResult result){
 		Tarif tarif = new Tarif(); 
 		tarif.setPrixEnEuros(tarifDto.getPrixEnEuros());
-		tarif.setAdministrateur(tarifDto.getAdministrateur());
-		tarif.setZone(tarifDto.getZone());
-		tarif.setTrancheHoraire(tarifDto.getTrancheHoraire());
+		//tarif.setAdministrateur(tarifDto.getAdministrateur());
+		tarif.setZone(tarifDto.getZone().getId());
+		tarif.setTrancheHoraire(tarifDto.getTrancheHoraire().getId());
 		tarifService.enregistrerUnTarif(tarifDto);
 		return tarifDto; 
 		  
 	}
 	
-	
+
 	
 
 }

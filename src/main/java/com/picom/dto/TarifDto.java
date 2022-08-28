@@ -36,4 +36,6 @@ public class TarifDto {
 	@ManyToOne
 	@NotNull(message="Merci de préciser la tranche horaire")
 	private TrancheHoraire trancheHoraire;
+	
+	
 }
