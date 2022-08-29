@@ -31,9 +31,9 @@ import com.picom.service.ClientService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("api/)")
+@RequestMapping("api/")
 public class ClientRestController {
 
 	private final ClientService clientService;
@@ -56,7 +56,7 @@ public class ClientRestController {
 		return ResponseEntity.created(new URI("/api/clients/" + email + "/" + motDePasse)).body(u);
 	}
 
-	@PostMapping(value = "clientsDto")
+	@PostMapping("addClient")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ClientDto ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) {
 

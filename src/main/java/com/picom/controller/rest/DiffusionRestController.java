@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("api/)")
+@RequestMapping("api/")
 @Validated
 public class DiffusionRestController {
 	

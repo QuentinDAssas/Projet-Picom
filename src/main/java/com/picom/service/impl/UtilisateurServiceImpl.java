@@ -3,6 +3,8 @@ package com.picom.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.picom.business.Administrateur;
 import com.picom.business.Utilisateur;
 import com.picom.dao.UtilisateurDao;
+import com.picom.dto.UtilisateurDto;
 import com.picom.service.UtilisateurService;
 
 import lombok.AllArgsConstructor;
@@ -62,5 +65,12 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
     	
         return authorities;
     }
+
+	@Override
+	public Utilisateur recupererUtilisateur(@Valid UtilisateurDto utilisateurDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -25,4 +25,5 @@ public class TarifDto {
 	Long idZone;
 	
 	Long idTrancheHoraire;
+	
 }
