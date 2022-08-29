@@ -10,7 +10,9 @@ public interface ClientService {
 	Client enregistrerClient(@Valid ClientDto clientDto);
 
 	Client recupererClient(String email, String motDePasse);
+	
+	Client recupererClient(Long id);
 
-	Client recupererUtilisateur(Long id);
+	Client recupererClient(Client client);
 
 }

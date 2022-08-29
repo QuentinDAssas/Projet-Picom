@@ -12,6 +12,10 @@ import com.picom.business.TrancheHoraire;
 import com.picom.business.Zone;
 import com.picom.dao.AnnonceDao;
 import com.picom.service.AnnonceService;
+import com.picom.service.ClientService;
+import com.picom.service.TarifService;
+import com.picom.service.TrancheHoraireService;
+import com.picom.service.ZoneService;
 
 import lombok.AllArgsConstructor;
 
@@ -19,11 +23,29 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AnnonceServiceImpl implements AnnonceService{
 	
-	private AnnonceDao annonceDao; 
+	private AnnonceDao annonceDao;
+	private final TarifService tarifService;
+	private final ZoneService zoneService;
+	private final TrancheHoraireService trancheHoraireService;
+	private final ClientService clientService;
+	
 	
 	@Override
 	public Annonce enregistrerAnnonce(@Valid Annonce annonce) {
-		return annonceDao.save(annonce);
+		Annonce newAnnonce = new Annonce();
+		newAnnonce.setDateHeureCreation(annonce.getDateHeureCreation());
+		newAnnonce.setDateHeureDebut(annonce.getDateHeureDebut());
+		newAnnonce.setDateHeureFin(annonce.getDateHeureFin());
+		newAnnonce.setContenu(annonce.getContenu());
+		newAnnonce.setNumeroCarte(annonce.getNumeroCarte());
+		newAnnonce.setAnneeExpiration(annonce.getAnneeExpiration());
+		newAnnonce.setMoisExpiration(annonce.getMoisExpiration());
+		newAnnonce.setCryptogramme(annonce.getCryptogramme());
+		newAnnonce.setClient(annonce.getClient());
+//		newAnnonce.setZones(zoneService.recupererListeZones());
+//		newAnnonce.setTranchesHoraires(trancheHoraireService.recupererListeTrancheHoraire());
+		newAnnonce.setMontantRegleEnEuros(annonce.getMontantRegleEnEuros());
+		return annonceDao.save(newAnnonce);
 	}
 
 	@Override
@@ -41,7 +63,8 @@ public class AnnonceServiceImpl implements AnnonceService{
 		annonce.setContenu(contenu); 
 		annonce.setZones(zones);
 		annonce.setTranchesHoraires(tranchesHoraires);
-		return annonceDao.save(annonce);
+		annonceDao.save(annonce);
+		return annonce;
 	}
 
 	@Override
@@ -53,6 +76,5 @@ public class AnnonceServiceImpl implements AnnonceService{
 	public List<Annonce> recupererListeAnnonces() {
 		return annonceDao.findAll();
 	}
-
 
 }

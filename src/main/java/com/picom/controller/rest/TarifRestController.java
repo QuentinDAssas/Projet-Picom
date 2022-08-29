@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.picom.business.Tarif;
+import com.picom.business.TrancheHoraire;
+import com.picom.business.Zone;
 import com.picom.dto.TarifDto;
 import com.picom.service.AdministrateurService;
 import com.picom.service.TarifService;
@@ -27,7 +28,6 @@ import com.picom.service.ZoneService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/")
 public class TarifRestController {
@@ -41,6 +41,11 @@ public class TarifRestController {
 	@GetMapping("ListTarif")
 	public List<Tarif> getTarifs(){
 		return tarifService.recupererTousLesTarifs();
+	}
+	
+	@GetMapping("tarif{idZone}/{idTrancheHoraire}")
+	public double TarifByIdZoneAndIdTrancheHoraire(@PathVariable Long idTrancheHoraire, Long idZone) {
+		return tarifService.findPrixEnEurosByidTrancheHoraireAndIdZone(idTrancheHoraire, idZone);
 	}
 	
 	@GetMapping("tarif{id}")
@@ -58,8 +63,8 @@ public class TarifRestController {
 		tarif.setAdministrateur(administrateurService.recupererAdministrateur(tarifDto.getIdAdministrateur()));
 		tarif.setZone(zoneService.recupererZone(tarifDto.getIdZone()));
 		tarif.setTrancheHoraire(trancheHoraireService.recupererTrancheHoraire(tarifDto.getIdTrancheHoraire()));
-		System.out.println(tarifDto);
-		tarifService.enregistrerUnTarif(tarif);
+		System.out.println(tarif);
+		tarifService.enregistrerUnTarif(tarifDto);
 		return tarifDto; 
 		  
 	}

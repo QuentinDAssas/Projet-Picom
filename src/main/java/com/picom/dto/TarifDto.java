@@ -1,16 +1,8 @@
 package com.picom.dto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-
-import com.picom.business.Administrateur;
-import com.picom.business.TrancheHoraire;
-import com.picom.business.Zone;
 
 import lombok.AccessLevel;
 import lombok.Data;

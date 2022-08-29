@@ -4,7 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.picom.business.Tarif;
+import com.picom.business.TrancheHoraire;
+import com.picom.business.Zone;
 import com.picom.dto.TarifDto;
 
 public interface TarifService {
@@ -12,11 +16,11 @@ public interface TarifService {
 	List<Tarif>recupererTousLesTarifs ();
 	
 	Tarif recupererTarif(Long id);
-
-	Tarif enregistrerUnTarif (Tarif tarif);
 	
 	Tarif enregistrerUnTarif(@Valid TarifDto tarifDto);
 	
 	boolean supprimerTarif (Long id);
+	
+	double findPrixEnEurosByidTrancheHoraireAndIdZone(Long idTrancheHoraire, Long idZone );
 
 }

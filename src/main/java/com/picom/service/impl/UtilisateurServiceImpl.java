@@ -28,7 +28,10 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
 
 	@Override
 	public Utilisateur recupererUtilisateur(String email, String motDePasse) {
-		return utilisateurDao.findByEmailAndMotDePasse(email, motDePasse);
+		System.out.println(email + "/" + motDePasse);
+		Utilisateur utilisateur = utilisateurDao.findByEmailAndMotDePasse(email, passwordEncoder.encode(motDePasse)); 
+		System.out.println(utilisateur);
+		return utilisateur;
 	}
 
 	@Override
@@ -50,10 +53,7 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
 	
     private List<GrantedAuthority> getGrantedAuthorities(Utilisateur utilisateur) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//        Set<Role> roles = utilisateur.getRoles();
-//        for (Role role : roles) {
-//        	authorities.add(new SimpleGrantedAuthority(role.getNom()));	
-//		}
+
         if (utilisateur instanceof Administrateur) {
         	authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }else {
@@ -62,5 +62,10 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
     	
         return authorities;
     }
+
+	@Override
+	public Utilisateur recupererUtilisateur(String email) {
+		return utilisateurDao.findByEmail(email);
+	}
 
 }

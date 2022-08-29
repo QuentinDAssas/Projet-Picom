@@ -31,7 +31,7 @@ public class SecurityConfiguration {
 
         .formLogin()
         	// On fait référence à une URL
-            .loginPage("/index")
+            
             .loginProcessingUrl("/login")
             .defaultSuccessUrl("/index")
             .failureForwardUrl("/index?notification=Email%20ou%20mot%20de%20passe%20incorrect")
@@ -40,16 +40,7 @@ public class SecurityConfiguration {
             .logoutUrl("/deconnexion")
             .logoutSuccessUrl("/index?notification=Au%20revoir")
             .and()
-        .authorizeRequests()
-        .antMatchers("/h2-console").permitAll()  
-        .antMatchers("/swagger-ui/index.html#/").permitAll()
-        .antMatchers("/api/").permitAll()
-        .antMatchers("/inscription").permitAll()
-        .antMatchers("/client/**").hasRole("CLIENT")
-        .antMatchers("/administration/**").hasRole("ADMIN")
-        // Pour la console H2 (à ne pas utiliser en prod)
-        .and()
-        .headers().frameOptions().disable();
+            .headers().frameOptions().disable();
         
        return http.build();
     }

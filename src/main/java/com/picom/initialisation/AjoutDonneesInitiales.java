@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.picom.business.Administrateur;
@@ -36,6 +37,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final TrancheHoraireDao trancheHoraireDao;
 	private final TarifDao tarifDao;
 	private final AnnonceDao annonceDao;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -55,7 +57,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		Client clientTest = new Client();
 		clientTest.setNom("Orsys");
 		clientTest.setPrenom("jury");
-		clientTest.setMotDePasse("12345678");
+		clientTest.setMotDePasse(passwordEncoder.encode("12345678"));
 		clientTest.setEmail("client1@orsys.fr");
 		clientTest.setNumeroDeTelephone("02 40 35 06 70");
 		System.out.println(clientTest);
@@ -67,7 +69,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		Administrateur adminTest = new Administrateur();
 		adminTest.setNom("l'Eponge");
 		adminTest.setPrenom("Bob");
-		adminTest.setMotDePasse("12345678");
+		adminTest.setMotDePasse(passwordEncoder.encode("12345678"));
 		adminTest.setEmail("admin1@orsys.fr");
 		System.out.println(adminTest);
 		administrateurDao.save(adminTest);
@@ -115,17 +117,35 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	}
 	
 	public void addTarifByAdmin() {
-		List<Zone> zones = zoneDao.findAll();
-		List<TrancheHoraire> horaire = trancheHoraireDao.findAll();
-		Administrateur adminTest = administrateurDao.getById((long) 2);
-		Tarif testTarif = new Tarif();
-		
-		testTarif.setPrixEnEuros(12);
-		testTarif.setAdministrateur(adminTest);
-		testTarif.setTrancheHoraire(horaire.get(2));
-		testTarif.setZone(zones.get(1));
-		tarifDao.save(testTarif);
-	}
+
+			List<Zone> zones = zoneDao.findAll();
+			List<TrancheHoraire> horaire = trancheHoraireDao.findAll();
+			Administrateur adminTest = administrateurDao.getById((long) 2);
+			int minZone = 1;
+			int maxZone = 4;
+			
+			int minTrancheHoraire = 1;
+			int maxTrancheHoraire = 13;
+			
+			int minPrix = 1;
+			int maxPrix = 100;
+
+			Random random = new Random();
+
+			int randZone = random.nextInt(maxZone + minZone -1) + minZone;
+			int randTrancheHoraire = random.nextInt(maxTrancheHoraire + minTrancheHoraire -1) + minTrancheHoraire;
+			int randPrix = random.nextInt(maxPrix + minPrix) + minPrix;
+			
+			for (int i = 1; i< 4; i++) {
+			Tarif testTarif = new Tarif();
+			testTarif.setPrixEnEuros(randPrix);
+			testTarif.setAdministrateur(adminTest);
+			testTarif.setTrancheHoraire(horaire.get(randTrancheHoraire));
+			testTarif.setZone(zones.get(randZone));
+			tarifDao.save(testTarif);
+			}
+		}
+
 	
 	public void addAnnonce() {
 		Annonce annonce = new Annonce(); 
@@ -134,8 +154,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		Client clientTest = new Client();
 		clientTest.setNom("Orsys");
 		clientTest.setPrenom("jury");
-		clientTest.setMotDePasse("12345678");
-		clientTest.setEmail("client1@orsys.fr");
+		clientTest.setMotDePasse(passwordEncoder.encode("12345678"));
+		clientTest.setEmail("client2@orsys.fr");
 		clientTest.setNumeroDeTelephone("02 40 35 06 70");
 		
 		clientDao.save(clientTest);

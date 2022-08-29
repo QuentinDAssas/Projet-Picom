@@ -21,7 +21,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -41,7 +40,7 @@ public class Annonce {
 	private String cryptogramme; 
 	private double montantRegleEnEuros; 
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	private Client client; 
 	
@@ -52,6 +51,10 @@ public class Annonce {
 	@ManyToMany
 	private List<TrancheHoraire>tranchesHoraires;
 	
+
 	
+	public Annonce() {
+		dateHeureCreation = LocalDateTime.now();
+	}
 	
-}
+}	
