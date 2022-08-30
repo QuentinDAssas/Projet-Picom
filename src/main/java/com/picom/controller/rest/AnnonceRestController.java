@@ -61,6 +61,7 @@ public class AnnonceRestController {
 	@PostMapping(value = "addAnnonce")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Annonce annoncePost(@Valid @RequestBody AnnonceDto annonceDto, BindingResult result){
+		System.out.println(annonceDto);
 		Annonce annonce = new Annonce();
 		annonce.setDateHeureCreation(annonce.getDateHeureCreation());
 		annonce.setDateHeureDebut(annonceDto.getDateHeureDebut());
@@ -82,7 +83,7 @@ public class AnnonceRestController {
         });
         annonce.setTranchesHoraires(tranches);
 		annonce.setMontantRegleEnEuros(annonceDto.getMontantRegleEnEuros());
-		annonceService.enregistrerAnnonce(annonce);
+		annonceService.enregistrerAnnonce(annonceDto);
 		return annonce;
 	}
 	@RolesAllowed("CLIENT")

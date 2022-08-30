@@ -1,5 +1,6 @@
 package com.picom.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class AnnonceDto {
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
 	private LocalDateTime dateHeureCreation; 
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-	private LocalDateTime dateHeureDebut; 
+	private LocalDate dateHeureDebut; 
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-	private LocalDateTime dateHeureFin; 
+	private LocalDate dateHeureFin; 
 	private String contenu; 
 	private String numeroCarte; 
 	private int anneeExpiration; 

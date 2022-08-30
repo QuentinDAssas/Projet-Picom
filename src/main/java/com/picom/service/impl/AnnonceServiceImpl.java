@@ -1,6 +1,8 @@
 package com.picom.service.impl;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +13,7 @@ import com.picom.business.Annonce;
 import com.picom.business.TrancheHoraire;
 import com.picom.business.Zone;
 import com.picom.dao.AnnonceDao;
+import com.picom.dto.AnnonceDto;
 import com.picom.service.AnnonceService;
 import com.picom.service.ClientService;
 import com.picom.service.TarifService;
@@ -31,21 +34,29 @@ public class AnnonceServiceImpl implements AnnonceService{
 	
 	
 	@Override
-	public Annonce enregistrerAnnonce(@Valid Annonce annonce) {
-		Annonce newAnnonce = new Annonce();
-		newAnnonce.setDateHeureCreation(annonce.getDateHeureCreation());
-		newAnnonce.setDateHeureDebut(annonce.getDateHeureDebut());
-		newAnnonce.setDateHeureFin(annonce.getDateHeureFin());
-		newAnnonce.setContenu(annonce.getContenu());
-		newAnnonce.setNumeroCarte(annonce.getNumeroCarte());
-		newAnnonce.setAnneeExpiration(annonce.getAnneeExpiration());
-		newAnnonce.setMoisExpiration(annonce.getMoisExpiration());
-		newAnnonce.setCryptogramme(annonce.getCryptogramme());
-		newAnnonce.setClient(annonce.getClient());
-//		newAnnonce.setZones(zoneService.recupererListeZones());
-//		newAnnonce.setTranchesHoraires(trancheHoraireService.recupererListeTrancheHoraire());
-		newAnnonce.setMontantRegleEnEuros(annonce.getMontantRegleEnEuros());
-		return annonceDao.save(newAnnonce);
+	public Annonce enregistrerAnnonce(@Valid AnnonceDto annonceDto) {
+		Annonce annonce = new Annonce();
+		annonce.setDateHeureCreation(annonce.getDateHeureCreation());
+		annonce.setDateHeureDebut(annonceDto.getDateHeureDebut());
+		annonce.setDateHeureFin(annonceDto.getDateHeureFin());
+		annonce.setContenu(annonceDto.getContenu());
+		annonce.setNumeroCarte(annonceDto.getNumeroCarte());
+		annonce.setAnneeExpiration(annonceDto.getAnneeExpiration());
+		annonce.setMoisExpiration(annonceDto.getMoisExpiration());
+		annonce.setCryptogramme(annonceDto.getCryptogramme());
+		annonce.setClient(clientService.recupererClient(annonceDto.getIdClient()));
+		List<Zone> zones = new ArrayList<>();
+        annonceDto.getIdZoneAnnonce().forEach(item -> {
+        	zones.add(zoneService.recupererZone(item));
+        });
+        annonce.setZones(zones);
+		List<TrancheHoraire> tranches = new ArrayList<>();
+        annonceDto.getIdTrancheHoraireAnnonce().forEach(item -> {
+            tranches.add(trancheHoraireService.recupererTrancheHoraire(item));
+        });
+        annonce.setTranchesHoraires(tranches);
+        annonce.setMontantRegleEnEuros(annonceDto.getMontantRegleEnEuros());
+		return annonceDao.save(annonce);
 	}
 
 	@Override
@@ -55,7 +66,7 @@ public class AnnonceServiceImpl implements AnnonceService{
 	}
 
 	@Override
-	public Annonce modifierAnnonce(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, String contenu,
+	public Annonce modifierAnnonce(LocalDate dateHeureDebut, LocalDate dateHeureFin, String contenu,
 			List<Zone>zones, List<TrancheHoraire> tranchesHoraires) {
 		Annonce annonce = new Annonce(); 
 		annonce.setDateHeureDebut(dateHeureDebut); 
