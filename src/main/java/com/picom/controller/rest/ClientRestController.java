@@ -30,7 +30,6 @@ import com.picom.service.ClientService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/")
 public class ClientRestController {

@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class DiffusionServiceImpl implements DiffusionService{
+public class DiffusionServiceImpl implements DiffusionService {
 
 	private DiffusionDao diffusionDao;
 
@@ -51,5 +51,4 @@ public class DiffusionServiceImpl implements DiffusionService{
 		return diffusionDao.findAll();
 	}
 
-	
 }

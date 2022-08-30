@@ -22,7 +22,6 @@ import com.picom.service.ZoneService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RequestMapping("/api/")
 @AllArgsConstructor
 @Validated
@@ -36,7 +35,7 @@ public class UtilisateurRestController {
 
     
 	// méthode qui récupère un utilisateur pour l'authentification
-	 
+	
 	@GetMapping("index/{email}/{motDePasse}")
     public Utilisateur utilisateurGetByEmailAndMotDePasse(@PathVariable String email, @PathVariable String motDePasse) {
 		System.out.println(email + "/" + motDePasse);

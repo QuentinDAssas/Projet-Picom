@@ -31,7 +31,6 @@ public class SecurityConfiguration {
 
         .formLogin()
         	// On fait référence à une URL
-            
             .loginProcessingUrl("/login")
             .defaultSuccessUrl("/index")
             .failureForwardUrl("/index?notification=Email%20ou%20mot%20de%20passe%20incorrect")

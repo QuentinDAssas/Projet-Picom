@@ -2,10 +2,8 @@ package com.picom.controller.rest;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+// import classe métier
 import com.picom.business.Annonce;
 import com.picom.business.TrancheHoraire;
 import com.picom.business.Zone;
+
+// import classe Dto
 import com.picom.dto.AnnonceDto;
+
+// import service
 import com.picom.service.AnnonceService;
 import com.picom.service.ClientService;
 import com.picom.service.TrancheHoraireService;
@@ -41,17 +44,20 @@ public class AnnonceRestController {
 	private final TrancheHoraireService trancheHoraireService;
 	private final UtilisateurService utilisateurService;
 	
+	
 	@RolesAllowed("CLIENT")
 	@GetMapping("annonces")
 	public List<Annonce> annoncesGetAll(){
 		return annonceService.recupererListeAnnonces();
 	}
 	
+	@RolesAllowed("CLIENT")
 	@GetMapping("annonces/{id}")
 	public Annonce annoncesGet(@PathVariable Long id){
 		return annonceService.recupererAnnonce(id);
 	}
 	
+	@RolesAllowed("CLIENT")
 	@GetMapping("annonces/{id}/tranchesHoraires")
     public List<TrancheHoraire> tranchesHorairesAnnoncesGet(@PathVariable Long id){
         return annonceService.recupererAnnonce(id).getTranchesHoraires();
@@ -85,11 +91,13 @@ public class AnnonceRestController {
 		annonceService.enregistrerAnnonce(annonce);
 		return annonce;
 	}
+	
 	@RolesAllowed("CLIENT")
 	@DeleteMapping("annonces/{id}")
 	public boolean annonceDelete(@PathVariable Long id){
 		return annonceService.supprimerAnnonce(id);
 	}
+	
 	@RolesAllowed("CLIENT")
 	@PutMapping("annonces/{id}")
 	public Annonce annoncePut(@RequestBody Annonce annonce){

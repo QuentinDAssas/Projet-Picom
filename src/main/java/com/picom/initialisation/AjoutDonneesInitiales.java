@@ -49,10 +49,10 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		addTranchesHoraires();
 		addTarifByAdmin();
 		addAnnonce();
-		
 
 	}
 
+	// ajout d'un client
 	public void addClients() {
 		Client clientTest = new Client();
 		clientTest.setNom("Orsys");
@@ -65,6 +65,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 	}
 
+	// ajout d'un administrateur
 	public void addAdministrateurs() {
 		Administrateur adminTest = new Administrateur();
 		adminTest.setNom("l'Eponge");
@@ -75,6 +76,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		administrateurDao.save(adminTest);
 	}
 
+	// ajout de zones
 	public void addZones() {
 		for (int i = 1; i < 6; i++) {
 			Zone zone = new Zone();
@@ -83,7 +85,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			zoneDao.save(zone);
 		}
 	}
-	
+
+	// ajout d'arrêts
 	public void addArrets() {
 		List<Zone> zones = zoneDao.findAll();
 		for (Zone zone : zones)
@@ -95,7 +98,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 				double latitude = rand.nextDouble(1, 10);
 				double longitude = rand.nextDouble(1, 10);
-							
+
 				arret.setNom("arret" + i);
 				arret.setLatitude(latitude);
 				arret.setLongitude(longitude);
@@ -107,6 +110,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		}
 	}
 
+	// ajout de tranches horaires
 	public void addTranchesHoraires() {
 		for (int i = 6; i < 20; i++) {
 			TrancheHoraire trancheHoraire = new TrancheHoraire();
@@ -115,78 +119,72 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			trancheHoraireDao.save(trancheHoraire);
 		}
 	}
-	
+
+	// ajout de tarifs
 	public void addTarifByAdmin() {
+		List<Zone> zones = zoneDao.findAll();
+		List<TrancheHoraire> horaire = trancheHoraireDao.findAll();
+		Administrateur adminTest = administrateurDao.getById((long) 2);
+		int minZone = 1;
+		int maxZone = 4;
 
-			List<Zone> zones = zoneDao.findAll();
-			List<TrancheHoraire> horaire = trancheHoraireDao.findAll();
-			Administrateur adminTest = administrateurDao.getById((long) 2);
-			int minZone = 1;
-			int maxZone = 4;
-			
-			int minTrancheHoraire = 1;
-			int maxTrancheHoraire = 13;
-			
-			int minPrix = 1;
-			int maxPrix = 100;
+		int minTrancheHoraire = 1;
+		int maxTrancheHoraire = 13;
 
-			Random random = new Random();
+		int minPrix = 1;
+		int maxPrix = 100;
 
-			int randZone = random.nextInt(maxZone + minZone -1) + minZone;
-			int randTrancheHoraire = random.nextInt(maxTrancheHoraire + minTrancheHoraire -1) + minTrancheHoraire;
-			int randPrix = random.nextInt(maxPrix + minPrix) + minPrix;
-			
-			for (int i = 1; i< 4; i++) {
+		Random random = new Random();
+
+		int randZone = random.nextInt(maxZone + minZone - 1) + minZone;
+		int randTrancheHoraire = random.nextInt(maxTrancheHoraire + minTrancheHoraire - 1) + minTrancheHoraire;
+		int randPrix = random.nextInt(maxPrix + minPrix) + minPrix;
+
+		for (int i = 1; i < 4; i++) {
 			Tarif testTarif = new Tarif();
 			testTarif.setPrixEnEuros(randPrix);
 			testTarif.setAdministrateur(adminTest);
 			testTarif.setTrancheHoraire(horaire.get(randTrancheHoraire));
 			testTarif.setZone(zones.get(randZone));
 			tarifDao.save(testTarif);
-			}
 		}
+	}
 
-	
+	// ajout d'annonce
 	public void addAnnonce() {
-		Annonce annonce = new Annonce(); 
-		
-		
+		Annonce annonce = new Annonce();
+
 		Client clientTest = new Client();
 		clientTest.setNom("Orsys");
 		clientTest.setPrenom("jury");
 		clientTest.setMotDePasse(passwordEncoder.encode("12345678"));
 		clientTest.setEmail("client2@orsys.fr");
 		clientTest.setNumeroDeTelephone("02 40 35 06 70");
-		
+
 		clientDao.save(clientTest);
-		
+
 		List<Zone> zones = zoneDao.findAll();
 		System.out.println(zones);
-		
-		List<TrancheHoraire>tranchesHoraires = trancheHoraireDao.findAll();
-		
+
+		List<TrancheHoraire> tranchesHoraires = trancheHoraireDao.findAll();
+
 		annonce.setDateHeureCreation(LocalDateTime.now());
 		annonce.setDateHeureDebut(LocalDateTime.now());
 		annonce.setDateHeureFin(LocalDateTime.now());
 		annonce.setContenu("hello world");
 		annonce.setNumeroCarte("12345678");
-		annonce.setMoisExpiration((byte)11);
+		annonce.setMoisExpiration((byte) 11);
 		annonce.setCryptogramme("abc");
 		annonce.setMontantRegleEnEuros(23.00);
 		annonce.setClient(clientTest);
 		annonceDao.save(annonce);
 		annonce.setZones(zones);
 		annonce.setTranchesHoraires(tranchesHoraires);
-		
-		//TODO Trouver une solution pour ne pas faire deux fois appelle à la méthode save()
+
+		// TODO Trouver une solution pour ne pas faire deux fois appelle à la méthode
+		// save()
 		annonceDao.save(annonce);
-		
-		
-		
-		
-		
+
 	}
-	
-	
-	
+
 }

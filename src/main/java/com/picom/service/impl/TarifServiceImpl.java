@@ -7,8 +7,6 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import com.picom.business.Tarif;
-import com.picom.business.TrancheHoraire;
-import com.picom.business.Zone;
 import com.picom.dao.TarifDao;
 import com.picom.dto.TarifDto;
 import com.picom.service.AdministrateurService;

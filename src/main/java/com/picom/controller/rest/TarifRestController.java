@@ -53,7 +53,7 @@ public class TarifRestController {
 		return tarifService.recupererTarif(id);
 	}
 	
-//	@RolesAllowed("ADMIN")	
+	@RolesAllowed("ADMIN")	
 	@PostMapping(value = "addTarif")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TarifDto tarifPost(@Valid @RequestBody TarifDto tarifDto, BindingResult result){

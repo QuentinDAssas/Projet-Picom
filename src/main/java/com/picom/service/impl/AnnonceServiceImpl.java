@@ -21,15 +21,14 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class AnnonceServiceImpl implements AnnonceService{
-	
+public class AnnonceServiceImpl implements AnnonceService {
+
 	private AnnonceDao annonceDao;
 	private final TarifService tarifService;
 	private final ZoneService zoneService;
 	private final TrancheHoraireService trancheHoraireService;
 	private final ClientService clientService;
-	
-	
+
 	@Override
 	public Annonce enregistrerAnnonce(@Valid Annonce annonce) {
 		Annonce newAnnonce = new Annonce();
@@ -42,8 +41,8 @@ public class AnnonceServiceImpl implements AnnonceService{
 		newAnnonce.setMoisExpiration(annonce.getMoisExpiration());
 		newAnnonce.setCryptogramme(annonce.getCryptogramme());
 		newAnnonce.setClient(annonce.getClient());
-//		newAnnonce.setZones(zoneService.recupererListeZones());
-//		newAnnonce.setTranchesHoraires(trancheHoraireService.recupererListeTrancheHoraire());
+		newAnnonce.setZones(zoneService.recupererListeZones());
+		newAnnonce.setTranchesHoraires(trancheHoraireService.recupererListeTrancheHoraire());
 		newAnnonce.setMontantRegleEnEuros(annonce.getMontantRegleEnEuros());
 		return annonceDao.save(newAnnonce);
 	}
@@ -51,16 +50,16 @@ public class AnnonceServiceImpl implements AnnonceService{
 	@Override
 	public boolean supprimerAnnonce(long id) {
 		annonceDao.deleteById(id);
-		return true; 
+		return true;
 	}
 
 	@Override
 	public Annonce modifierAnnonce(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, String contenu,
-			List<Zone>zones, List<TrancheHoraire> tranchesHoraires) {
-		Annonce annonce = new Annonce(); 
-		annonce.setDateHeureDebut(dateHeureDebut); 
+			List<Zone> zones, List<TrancheHoraire> tranchesHoraires) {
+		Annonce annonce = new Annonce();
+		annonce.setDateHeureDebut(dateHeureDebut);
 		annonce.setDateHeureFin(dateHeureFin);
-		annonce.setContenu(contenu); 
+		annonce.setContenu(contenu);
 		annonce.setZones(zones);
 		annonce.setTranchesHoraires(tranchesHoraires);
 		annonceDao.save(annonce);

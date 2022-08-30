@@ -3,8 +3,6 @@ package com.picom.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,29 +15,29 @@ import org.springframework.stereotype.Service;
 import com.picom.business.Administrateur;
 import com.picom.business.Utilisateur;
 import com.picom.dao.UtilisateurDao;
-import com.picom.dto.UtilisateurDto;
 import com.picom.service.UtilisateurService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsService{
-	
+public class UtilisateurServiceImpl implements UtilisateurService, UserDetailsService {
+
 	private UtilisateurDao utilisateurDao;
 	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	public Utilisateur recupererUtilisateur(String email, String motDePasse) {
 		System.out.println(email + "/" + motDePasse);
-		Utilisateur utilisateur = utilisateurDao.findByEmailAndMotDePasse(email, passwordEncoder.encode(motDePasse)); 
+		Utilisateur utilisateur = utilisateurDao.findByEmailAndMotDePasse(email, passwordEncoder.encode(motDePasse));
 		System.out.println(utilisateur);
 		return utilisateur;
 	}
 
+	// méthode de Spring security pour l'authentification
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
+
 		if (username.trim().isEmpty()) {
 			throw new UsernameNotFoundException("username is empty");
 		}
@@ -53,18 +51,19 @@ public class UtilisateurServiceImpl implements UtilisateurService ,UserDetailsSe
 		System.out.println(user);
 		return user;
 	}
-	
-    private List<GrantedAuthority> getGrantedAuthorities(Utilisateur utilisateur) {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        if (utilisateur instanceof Administrateur) {
-        	authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }else {
-        	authorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
-        }
-    	
-        return authorities;
-    }
+	// méthode d'ajout d'un role à un utilisateur
+	private List<GrantedAuthority> getGrantedAuthorities(Utilisateur utilisateur) {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+		if (utilisateur instanceof Administrateur) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else {
+			authorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
+		}
+
+		return authorities;
+	}
 
 	@Override
 	public Utilisateur recupererUtilisateur(String email) {

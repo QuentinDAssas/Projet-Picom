@@ -51,17 +51,6 @@ public class ClientServiceImpl implements ClientService{
 		return clientDao.findById(id).orElse(null);
 	}
 
-
-    private List<GrantedAuthority> getGrantedAuthorities(Client client) {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//        Set<Role> CLIENT = client.getRoles();
-//        for (Role role : roles) {
-//        	authorities.add(new SimpleGrantedAuthority(role.getNom()));	
-//		}
-        return authorities;
-    }
-
-
 	@Override
 	public Client recupererClient(Client client) {
 		return clientDao.findById(client.getId()).orElse(null);
