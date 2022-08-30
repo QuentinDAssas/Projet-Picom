@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import com.picom.business.Tarif;
+import com.picom.business.TrancheHoraire;
+import com.picom.business.Zone;
 import com.picom.dao.TarifDao;
 import com.picom.dto.TarifDto;
 import com.picom.service.AdministrateurService;
@@ -24,11 +26,6 @@ public class TarifServiceImpl implements TarifService {
 	private final ZoneService zoneService;
 	private final TrancheHoraireService trancheHoraireService;
 	private final AdministrateurService administrateurService;
-
-	@Override
-	public Tarif enregistrerUnTarif(Tarif tarif) {
-		return tarifDao.save(tarif);
-	}
 
 	@Override
 	public Tarif recupererTarif(Long id) {
@@ -61,5 +58,10 @@ public class TarifServiceImpl implements TarifService {
 			return true;
 		}
 
+	}
+
+	@Override
+	public double findPrixEnEurosByidTrancheHoraireAndIdZone(Long idTrancheHoraire, Long idZone ) {
+		return tarifDao.findPrixEnEurosByidTrancheHoraireAndIdZone(idTrancheHoraire, idZone );
 	}
 }

@@ -1,6 +1,5 @@
 package com.picom.business;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,7 +41,7 @@ public class Tarif {
 	private TrancheHoraire trancheHoraire;
 
 	public Tarif(Long id, double prixEnEuros, @NotNull(message = "Merci de préciser la Zone") Zone zone,
-			@NotNull(message = "Merci de préciser la Zone") TrancheHoraire trancheHoraire) {
+			@NotNull(message = "Merci de préciser la tranche horaire") TrancheHoraire trancheHoraire) {
 		super();
 		this.id = id;
 		this.prixEnEuros = prixEnEuros;

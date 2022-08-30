@@ -19,6 +19,5 @@ public interface AnnonceService {
 
 	Annonce recupererAnnonce(long id); 
 	
-	List<Annonce> recupererListeAnnonces();
-	
+	List<Annonce> recupererListeAnnonces();	
 }

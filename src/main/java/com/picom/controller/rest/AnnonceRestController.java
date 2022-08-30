@@ -1,12 +1,13 @@
 package com.picom.controller.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,21 +15,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.picom.business.Annonce;
 import com.picom.business.TrancheHoraire;
+import com.picom.business.Zone;
+import com.picom.dto.AnnonceDto;
 import com.picom.service.AnnonceService;
+import com.picom.service.ClientService;
+import com.picom.service.TrancheHoraireService;
+import com.picom.service.UtilisateurService;
+import com.picom.service.ZoneService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin("http://localhost:4200")
 @RequestMapping("api/")
 public class AnnonceRestController {
 	
-	private final AnnonceService annonceService; 
+	private final AnnonceService annonceService;
+	private final ClientService clientService;
+	private final ZoneService zoneService;
+	private final TrancheHoraireService trancheHoraireService;
+	private final UtilisateurService utilisateurService;
 	
 	@RolesAllowed("CLIENT")
 	@GetMapping("annonces")
@@ -47,9 +58,32 @@ public class AnnonceRestController {
     }
 	
 	@RolesAllowed("CLIENT")
-	@PostMapping("annonces")
-	public Annonce annoncePost(@Valid Annonce annonce){
-		return annonceService.enregistrerAnnonce(annonce);
+	@PostMapping(value = "addAnnonce")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public Annonce annoncePost(@Valid @RequestBody AnnonceDto annonceDto, BindingResult result){
+		Annonce annonce = new Annonce();
+		annonce.setDateHeureCreation(annonce.getDateHeureCreation());
+		annonce.setDateHeureDebut(annonceDto.getDateHeureDebut());
+		annonce.setDateHeureFin(annonceDto.getDateHeureFin());
+		annonce.setContenu(annonceDto.getContenu());
+		annonce.setNumeroCarte(annonceDto.getNumeroCarte());
+		annonce.setAnneeExpiration(annonceDto.getAnneeExpiration());
+		annonce.setMoisExpiration(annonceDto.getMoisExpiration());
+		annonce.setCryptogramme(annonceDto.getCryptogramme());
+		annonce.setClient(clientService.recupererClient(annonceDto.getIdClient()));
+		List<Zone> zones = new ArrayList<>();
+        annonceDto.getIdZoneAnnonce().forEach(item -> {
+        	zones.add(zoneService.recupererZone(item));
+        });
+        annonce.setZones(zones);
+		List<TrancheHoraire> tranches = new ArrayList<>();
+        annonceDto.getIdTrancheHoraireAnnonce().forEach(item -> {
+            tranches.add(trancheHoraireService.recupererTrancheHoraire(item));
+        });
+        annonce.setTranchesHoraires(tranches);
+		annonce.setMontantRegleEnEuros(annonceDto.getMontantRegleEnEuros());
+		annonceService.enregistrerAnnonce(annonce);
+		return annonce;
 	}
 	@RolesAllowed("CLIENT")
 	@DeleteMapping("annonces/{id}")
@@ -59,10 +93,9 @@ public class AnnonceRestController {
 	@RolesAllowed("CLIENT")
 	@PutMapping("annonces/{id}")
 	public Annonce annoncePut(@RequestBody Annonce annonce){
-		// annonce = annonceService.recupererAnnonce(id);
-		
-		return annonceService.modifierAnnonce(annonce.getDateHeureDebut(),annonce.getDateHeureFin(),annonce.getContenu(),annonce.getZones(),annonce.getTranchesHoraires());
+		 Annonce uptdate = new Annonce();
+		 uptdate = annonceService.recupererAnnonce(annonce.getId());
+		return null;
 	}
-	
-	
+		
 }

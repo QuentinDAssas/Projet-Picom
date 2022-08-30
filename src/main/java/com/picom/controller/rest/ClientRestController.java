@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
@@ -40,7 +39,7 @@ public class ClientRestController {
 
 	@GetMapping("clients/{id}")
 	public Client ClientGet(@PathVariable Long id) {
-		return clientService.recupererUtilisateur(id);
+		return clientService.recupererClient(id);
 	}
 
 	// Méthode pour ajouter un client

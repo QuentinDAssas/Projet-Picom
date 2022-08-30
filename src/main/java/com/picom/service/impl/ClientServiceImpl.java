@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService{
 
 
 	@Override
-	public Client recupererUtilisateur(Long id) {
+	public Client recupererClient(Long id) {
 		return clientDao.findById(id).orElse(null);
 	}
 
@@ -60,6 +60,12 @@ public class ClientServiceImpl implements ClientService{
 //		}
         return authorities;
     }
+
+
+	@Override
+	public Client recupererClient(Client client) {
+		return clientDao.findById(client.getId()).orElse(null);
+	}
 
 
 }
