@@ -1,5 +1,6 @@
 package com.picom.business;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class Annonce {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id; 
 	private LocalDateTime dateHeureCreation; 
-	private LocalDateTime dateHeureDebut; 
-	private LocalDateTime dateHeureFin; 
+	private LocalDate dateHeureDebut; 
+	private LocalDate dateHeureFin; 
 	private String contenu; 
 	private String numeroCarte; 
 	private int anneeExpiration; 

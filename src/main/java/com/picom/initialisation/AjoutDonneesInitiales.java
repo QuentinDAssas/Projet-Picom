@@ -1,7 +1,7 @@
 package com.picom.initialisation;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -164,13 +164,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		clientDao.save(clientTest);
 
 		List<Zone> zones = zoneDao.findAll();
-		System.out.println(zones);
+
 
 		List<TrancheHoraire> tranchesHoraires = trancheHoraireDao.findAll();
 
 		annonce.setDateHeureCreation(LocalDateTime.now());
-		annonce.setDateHeureDebut(LocalDateTime.now());
-		annonce.setDateHeureFin(LocalDateTime.now());
+		annonce.setDateHeureDebut(LocalDate.now());
+		annonce.setDateHeureFin(LocalDate.now());
 		annonce.setContenu("hello world");
 		annonce.setNumeroCarte("12345678");
 		annonce.setMoisExpiration((byte) 11);

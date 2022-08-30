@@ -35,13 +35,14 @@ import lombok.AllArgsConstructor;
 public class ClientRestController {
 
 	private final ClientService clientService;
+	
+	
 
 	@GetMapping("clients/{id}")
 	public Client ClientGet(@PathVariable Long id) {
 		return clientService.recupererClient(id);
 	}
 
-	// Méthode pour ajouter un client
 	@GetMapping("clients/{email}/{motDePasse}")
 	public ResponseEntity<Client> clientGetByEmailAndMotDePasse(@PathVariable String email,
 			@PathVariable String motDePasse) throws URISyntaxException {
@@ -56,7 +57,7 @@ public class ClientRestController {
 
 	@PostMapping("addClient")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ClientDto ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) {
+	public ClientDto ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) throws UtilisateurExistantException{
 
 		Client client = new Client();
 		client.setNom(clientDto.getNom());
