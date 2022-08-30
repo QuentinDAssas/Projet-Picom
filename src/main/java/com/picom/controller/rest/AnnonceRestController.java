@@ -2,15 +2,16 @@ package com.picom.controller.rest;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -20,10 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.picom.business.Annonce;
 import com.picom.business.TrancheHoraire;
 import com.picom.business.Zone;
-
 // import classe Dto
 import com.picom.dto.AnnonceDto;
-
 // import service
 import com.picom.service.AnnonceService;
 import com.picom.service.ClientService;
@@ -99,12 +98,12 @@ public class AnnonceRestController {
 		return annonceService.supprimerAnnonce(id);
 	}
 	
-	@RolesAllowed("CLIENT")
-	@PutMapping("annonces/{id}")
-	public Annonce annoncePut(@RequestBody Annonce annonce){
-		 Annonce uptdate = new Annonce();
-		 uptdate = annonceService.recupererAnnonce(annonce.getId());
-		return null;
-	}
+//	@RolesAllowed("CLIENT")
+//	@PutMapping("annonces/{id}")
+//	public Annonce annoncePut(@RequestBody Annonce annonce){
+//		 Annonce uptdate = new Annonce();
+//		 uptdate = annonceService.recupererAnnonce(annonce.getId());
+//		return uptdate;
+//	}
 		
 }

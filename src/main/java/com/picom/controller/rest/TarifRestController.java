@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.picom.business.Tarif;
-import com.picom.business.TrancheHoraire;
-import com.picom.business.Zone;
 import com.picom.dto.TarifDto;
 import com.picom.service.AdministrateurService;
 import com.picom.service.TarifService;
@@ -57,13 +55,11 @@ public class TarifRestController {
 	@PostMapping(value = "addTarif")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public TarifDto tarifPost(@Valid @RequestBody TarifDto tarifDto, BindingResult result){
-		System.out.println(tarifDto);
 		Tarif tarif = new Tarif(); 
 		tarif.setPrixEnEuros(tarifDto.getPrixEnEuros());
 		tarif.setAdministrateur(administrateurService.recupererAdministrateur(tarifDto.getIdAdministrateur()));
 		tarif.setZone(zoneService.recupererZone(tarifDto.getIdZone()));
 		tarif.setTrancheHoraire(trancheHoraireService.recupererTrancheHoraire(tarifDto.getIdTrancheHoraire()));
-		System.out.println(tarif);
 		tarifService.enregistrerUnTarif(tarifDto);
 		return tarifDto; 
 		  

@@ -6,7 +6,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +37,6 @@ public class UtilisateurRestController {
 	
 	@GetMapping("index/{email}/{motDePasse}")
     public Utilisateur utilisateurGetByEmailAndMotDePasse(@PathVariable String email, @PathVariable String motDePasse) {
-		System.out.println(email + "/" + motDePasse);
         return utilisateurService.recupererUtilisateur(email, motDePasse);
     }
 

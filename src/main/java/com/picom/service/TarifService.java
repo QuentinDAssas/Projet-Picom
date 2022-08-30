@@ -4,11 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.picom.business.Tarif;
-import com.picom.business.TrancheHoraire;
-import com.picom.business.Zone;
 import com.picom.dto.TarifDto;
 
 public interface TarifService {

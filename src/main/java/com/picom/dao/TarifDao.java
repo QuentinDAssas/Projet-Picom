@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.picom.business.Tarif;
-import com.picom.dto.TarifDto;
 
 public interface TarifDao extends JpaRepository<Tarif, Long>{
 

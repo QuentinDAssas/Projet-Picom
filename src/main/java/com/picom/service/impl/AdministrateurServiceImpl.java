@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.picom.business.Administrateur;
 import com.picom.dao.AdministrateurDao;
-import com.picom.dao.AnnonceDao;
 import com.picom.service.AdministrateurService;
 
 import lombok.AllArgsConstructor;

@@ -28,9 +28,7 @@ public class UtilisateurServiceImpl implements UtilisateurService, UserDetailsSe
 
 	@Override
 	public Utilisateur recupererUtilisateur(String email, String motDePasse) {
-		System.out.println(email + "/" + motDePasse);
 		Utilisateur utilisateur = utilisateurDao.findByEmailAndMotDePasse(email, passwordEncoder.encode(motDePasse));
-		System.out.println(utilisateur);
 		return utilisateur;
 	}
 
@@ -48,7 +46,6 @@ public class UtilisateurServiceImpl implements UtilisateurService, UserDetailsSe
 		}
 		List<GrantedAuthority> grantedAuthorities = getGrantedAuthorities(utilisateur);
 		User user = new User(utilisateur.getEmail(), utilisateur.getMotDePasse(), grantedAuthorities);
-		System.out.println(user);
 		return user;
 	}
 

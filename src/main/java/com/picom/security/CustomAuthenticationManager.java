@@ -1,7 +1,5 @@
 package com.picom.security;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -41,7 +39,6 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		System.out.println("OK dans le CustomAuthenticationManager : " + new Date() + authentication);
 		return authenticationProvider().authenticate(authentication); 		
 	} 
 
