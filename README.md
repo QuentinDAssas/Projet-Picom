@@ -98,3 +98,4 @@ Hibernate et celles de l’API Bean validation.
 - 1 administrateur (avec l’email admin1@orsys.fr et le mot de passe 12345678)
 10. Écrire le front en utilisant le framework Angular
 Question bonus : modifier l’application pour qu’elle soit multilingue.
+# Picom-back
